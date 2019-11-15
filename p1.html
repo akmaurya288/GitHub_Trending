@@ -1,0 +1,57 @@
+<html>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        var repo;
+        function loadRepo(){
+        jQuery.getJSON('https://github-trending-api.now.sh/repositories?language=&since=daily',gotData)
+        }
+        function gotData(data){
+            var view = document.getElementById("t1");
+            repo = data;
+            for(var i in repo){
+                var avatar = document.createElement("img");
+                avatar.src = repo[i].avatar;
+                avatar.width = "40";
+                avatar.height = "40";
+                view.appendChild(avatar);
+
+                var author = document.createElement("p");
+                view.appendChild(author);
+                author.innerHTML = repo[i].author;
+
+                var description = document.createElement('p');
+                view.appendChild(description);
+                description.innerHTML = repo[i].description;
+            }
+        }
+        function searchRepo(){
+            var text = document.getElementById("searchText").value;
+            document.getElementById("t1").innerHTML = text;
+        }
+    </script>
+    <style>
+    .footer{
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #595959;
+        color: white;
+        text-align: center;
+    }
+    </style>
+    <body>
+        <div style="background-color: #595959; padding:8px;">
+        <center><h1>Trending <img src="Octocat.png" align="top" width="40px" height="40px"></h1></center>
+        
+        <input type="search" name="search" id="searchText" placeholder="Search Repository">
+        <input type="button" onclick="loadRepo()" value="Search">
+    </div>
+    <div id="t1">
+        
+    </div>
+    <footer class="footer">
+        <p>This Website is helps to search trending repository from the GitHub.</p>
+    </footer>
+    </body>
+</html>
