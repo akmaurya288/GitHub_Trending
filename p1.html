@@ -1,4 +1,22 @@
 <html>
+    <style>
+            .dot {
+            height: 25px;
+            width: 25px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+          }
+            .footer{
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                background-color: #595959;
+                color: white;
+                text-align: center;
+            }
+            </style>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script>
         var repo;
@@ -19,9 +37,33 @@
                 view.appendChild(author);
                 author.innerHTML = repo[i].author;
 
+                var name = document.createElement("p");
+                view.appendChild(name);
+                name.innerHTML = repo[i].name;
+
                 var description = document.createElement('p');
                 view.appendChild(description);
                 description.innerHTML = repo[i].description;
+
+                var languageCircle = document.createElement('span');
+                view.appendChild(languageCircle);
+                languageCircle.setAttribute("class","dot");
+                languageCircle.setAttribute("style","background-color: "+repo[i].languageColor+";");
+                var language = document.createElement('p');
+                view.appendChild(language);
+                language.innerHTML = repo[i].language;
+
+                var stars = document.createElement('p');
+                view.appendChild(stars);
+                stars.innerHTML ="stars "+ repo[i].stars;
+                
+                var forks = document.createElement('p');
+                view.appendChild(forks);
+                forks.innerHTML ="forks "+ repo[i].forks;
+                
+                var currentPeriodStars = document.createElement('p');
+                view.appendChild(currentPeriodStars);
+                currentPeriodStars.innerHTML ="currentPeriodStars "+ repo[i].currentPeriodStars;
             }
         }
         function searchRepo(){
@@ -29,23 +71,12 @@
             document.getElementById("t1").innerHTML = text;
         }
     </script>
-    <style>
-    .footer{
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        background-color: #595959;
-        color: white;
-        text-align: center;
-    }
-    </style>
-    <body>
+    <body onload="loadRepo()">
         <div style="background-color: #595959; padding:8px;">
         <center><h1>Trending <img src="Octocat.png" align="top" width="40px" height="40px"></h1></center>
-        
+<!--         
         <input type="search" name="search" id="searchText" placeholder="Search Repository">
-        <input type="button" onclick="loadRepo()" value="Search">
+        <input type="button" onclick="loadRepo()" value="Search"> -->
     </div>
     <div id="t1">
         
