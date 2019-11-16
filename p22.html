@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <style>
+            .dot {
+            height: 25px;
+            width: 25px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+          }
+            .footer{
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                background-color: #595959;
+                color: white;
+                text-align: center;
+            }
+            </style>
+            <link rel="stylesheet" type="text/css" href="liststyle.css">
+        <script>
+                    var repo;
+                    function loadRepo(){
+                    jQuery.getJSON('https://github-trending-api.now.sh/repositories?language=&since=daily',gotData)
+                    }
+                    function gotData(data){
+                        repo = data;
+                        var view = document.getElementById("t1");
+                        for(var i in repo){
+                            var myvar = '<div id="listv" class="container">'+
+            '        <div class="card">'+
+            '          <div class="topCard">'+
+            '          <div class="avatarBox">'+
+            '            <img src="'+repo[i].avatar+'" width="40px" height="40px">'+
+            '          </div>'+
+            '          <div class="topData">'+
+            '            <h5 style="margin: 5px;">'+repo[i].author+'</h5>'+
+            '            <h4 style="margin: 5px;">'+repo[i].name+'</h4>'+
+            '          </div>'+
+            '        </div>'+
+            '        <div  style="margin-left: 40px;" class="bottomCard">'+
+            '          <h5 style="margin: 5px;">'+repo[i].description+'</h5>'+
+            '          <div  class="list">'+
+            '            <span class="dot" style="float: left;background-color:'+repo[i].languageColor+';"></span>'+
+            '            <h5 style="float: left;margin: 2px;">'+repo[i].language+'</h5>'+
+            '            <span class="dot" style="float: left;"></span>'+
+            '            <h5 style="float: left;margin: 2px;">'+repo[i].stars+'</h5>'+
+            '            <span class="dot" style="float: left;"></span>'+
+            '            <h5 style="float: left;margin: 2px;">'+repo[i].forks+'</h5>'+
+            '          </div>'+
+            '    '+
+            '        </div>'+
+            '        </div>'+
+            '    </div>';
+                            view.innerHTML+=myvar;
+                        }
+                    }
+            </script>
+    </head>
+    
+    <body onload="loadRepo()">
+        <div style="background-color: #595959; padding:8px;">
+        <center><h1>Trending <img src="Octocat.png" align="top" width="40px" height="40px"></h1></center>
+<!--         
+        <input type="search" name="search" id="searchText" placeholder="Search Repository">
+        <input type="button" onclick="loadRepo()" value="Search"> -->
+    </div>
+    
+
+    <div id="t1">
+    </div>
+    <footer class="footer">
+        <p>This Website is helps to search trending repository from the GitHub.</p>
+    </footer>
+    </body>
+</html>

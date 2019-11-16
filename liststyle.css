@@ -1,0 +1,53 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+.container{
+    width: 400px;
+    margin: 5px ;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.card{
+    margin: 1px 1px;
+    width: 400px;
+    height: 50px auto;
+    transform-style: preserve-3d;
+    transform: perspective(2000px);
+    transition: 1s;
+	background-color: #eee;
+}
+.topCard{
+    display: inline-block;
+}
+.avatarBox{
+    margin: 5px;
+    display: inline-block;
+}
+.topData{
+    display: inline-block;
+}
+.bottomCard .list{
+    display: inline;
+
+}
+.dot {
+    margin-left: 10px;
+    height: 20px;
+    width: 20px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+  }
+.footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #595959;
+    color: white;
+    text-align: center;
+}
